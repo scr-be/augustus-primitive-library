@@ -8,12 +8,17 @@ use ArrayIterator;
 /**
  * Class Collection.
  */
-class AbstractCollection implements CollectionInterface
+abstract class AbstractCollection implements CollectionInterface
 {
     /**
      * @var array
      */
     protected $elements;
+
+    /**
+     * @param array $elements
+     */
+    abstract public function __construct(array $elements = []);
 
     /**
      * @return array
@@ -197,27 +202,27 @@ class AbstractCollection implements CollectionInterface
     }
 
     /**
-     * @param string $key
-     * @param mixed  $element
+     * @param mixed $key
+     * @param mixed $element
      *
      * @return $this
      */
     public function set($key, $element)
     {
-        $this->elements[(string) $key] = $element;
+        $this->elements[$key] = $element;
 
         return $this;
     }
 
     /**
-     * @param string $key
+     * @param mixed $key
      *
      * @return null
      */
     public function get($key)
     {
         if ($this->containsKey($key)) {
-            return $this->elements[(string) $key];
+            return $this->elements[$key];
         }
 
         return null;
@@ -235,13 +240,13 @@ class AbstractCollection implements CollectionInterface
     }
 
     /**
-     * @param string $key
+     * @param mixed $key
      *
      * @return bool
      */
     public function containsKey($key)
     {
-        return (bool) (array_key_exists((string) $key, $this->elements));
+        return (bool) (array_key_exists($key, $this->elements));
     }
 
     /**
@@ -259,14 +264,14 @@ class AbstractCollection implements CollectionInterface
     }
 
     /**
-     * @param string $key
+     * @param mixed $key
      *
      * @return $this
      */
     public function removeKey($key)
     {
         if ($this->containsKey($key)) {
-            unset($this->elements[(string) $key]);
+            unset($this->elements[$key]);
         }
 
         return $this;
@@ -315,7 +320,7 @@ class AbstractCollection implements CollectionInterface
      */
     public function sort(Closure $predicate)
     {
-        $this->elements = uasort($this->elements, $predicate);
+        uasort($this->elements, $predicate);
 
         return $this;
     }

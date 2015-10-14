@@ -124,15 +124,15 @@ interface CollectionInterface extends Countable, IteratorAggregate, ArrayAccess
     public function addAllCollection(CollectionInterface $collection);
 
     /**
-     * @param string $key
-     * @param mixed  $element
+     * @param mixed $key
+     * @param mixed $element
      *
      * @return $this
      */
     public function set($key, $element);
 
     /**
-     * @param string $key
+     * @param mixed $key
      *
      * @return null
      */
@@ -147,7 +147,7 @@ interface CollectionInterface extends Countable, IteratorAggregate, ArrayAccess
     public function contains($element, $strict = true);
 
     /**
-     * @param string $key
+     * @param mixed $key
      *
      * @return bool
      */
@@ -161,7 +161,7 @@ interface CollectionInterface extends Countable, IteratorAggregate, ArrayAccess
     public function remove($element);
 
     /**
-     * @param string $key
+     * @param mixed $key
      *
      * @return $this
      */
