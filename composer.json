@@ -1,0 +1,49 @@
+{
+    "name"        : "scribe/primitive-augustus-library",
+    "license"     : "MIT",
+    "type"        : "library",
+    "homepage"    : "https://scr.be/primitive-augustus-library/home",
+    "description" : "Implementations of various collection-types to augment the lack of array-like primitives in PHP.",
+    "support" : {
+        "email"  : "rmf@scr.be",
+        "source" : "https://scr.be/primitive-augustus-library/git",
+        "issues" : "https://scr.be/primitive-augustus-library/issues",
+        "irc"    : "irc://irc.efnet.org/scribe"
+    },
+    "keywords"    : [
+        "primitive-augustus-library", "scribe-primitive-augustus-library", "library", "scr.be", "scribe", "scribenet", "scribe-softwade", "scribe-services"
+    ],
+    "authors" : [
+        {
+            "name"     : "Rob Frawley 2nd",
+            "email"    : "rmf@scr.be",
+            "homepage" : "https://scr.be/rmf",
+            "role"     : "Project Lead"
+        }
+    ],
+    "require" : {
+        "php" : ">=5.6.4,~5.6|~7.0"
+    },
+    "require-dev" : {
+        "phpunit/phpunit"        : "~4.6",
+        "scrutinizer/ocular"     : "~1.1",
+        "satooshi/php-coveralls" : "0.7.*@dev",
+        "sami/sami"              : "~3.0",
+        "nikic/php-parser"       : ">=1.0,<1.2"
+    },
+    "autoload" : {
+        "psr-4" : {
+            "Scribe\\PrimitiveAugustus\\" : "lib/"
+        }
+    },
+    "config" : {
+        "bin-dir"           : "bin",
+        "preferred-install" : "auto",
+        "minimum-stability" : "dev"
+    },
+    "extra" : {
+        "branch-alias" : {
+            "dev-master" : "0.1.x-dev"
+        }
+    }
+}

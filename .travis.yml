@@ -1,0 +1,34 @@
+language: php
+
+env:
+    global:
+        - secure: GFZ4RQeYo9a57V0HUxJjIheB1q+bIRBvLt3j26TB5wusu3AEI3BAM4v/uyCAWEKO0fafW2J4L/RM5lINclH8u2C1gtzGG2nZ5NlKt7b8dM3WawZOqQaMbhgjgzR1NO3oIzSDouwvsPlTnz3pNvec73CJYsydllQJcCRNJLOEEEw=
+
+matrix:
+    include:
+        - php: 5.6
+        - php: 7.0
+
+notifications:
+    slack:
+        secure: fQJkH85f60YbHu0y3y7lptnouX3IULkX9f8wrEq4+SFI7n7Uy6RLRhz1wRioOR0gjRcX4dH+40ZZit3GpLB0M781cOwuBAcnobrU6coE8YdbFLrK/EFD/qXM/6RlwRik/3TA3ZX5C1WQfrBxnxq3jvuTFDplrXoxThS3lIl/KCo=
+
+before_install:
+    - git clone -b aboriginal-pasta https://github.com/scribenet/world-configuration-public.git config_shared_public
+    - bash config_shared_public/build/php_build-mod_igbinary.sh
+    - phpenv config-add config_shared_public/build/php_config-en_timezone.ini
+    - phpenv rehash
+    - mkdir -p build/logs
+    - mkdir -p bin
+
+install:
+    - travis_retry composer self-update
+    - travis_retry composer clear-cache
+    - travis_retry composer install --no-interaction || travis_retry composer update --no-interaction
+
+script:
+    - bin/phpunit --verbose --configuration phpunit.xml.dist
+
+after_script:
+    - if [[ ${TRAVIS_PHP_VERSION:0:3} != "7.0" ]]; then bin/coveralls -vvv; fi
+    - if [[ ${TRAVIS_PHP_VERSION:0:3} != "7.0" ]]; then bin/ocular code-coverage:upload --format=php-clover build/logs/clover.xml; fi
