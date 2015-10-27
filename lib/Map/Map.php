@@ -1,21 +1,21 @@
 <?php
 
-namespace Scribe\PrimitiveAugustus\Map;
+namespace Scribe\Primitive\Map;
 
-use Scribe\PrimitiveAugustus\Collection\AbstractCollection;
+use Scribe\Primitive\Collection\AbstractCollection;
 
 /**
  * Class Map.
  */
 class Map extends AbstractCollection implements MapInterface
 {
-    /**
-     * @param array $elements
-     */
-    public function __construct(array $elements = [])
-    {
-        $this->elements = $elements;
-    }
+	/**
+	 * @param array $elements
+	 */
+	public function __construct(array $elements = [])
+	{
+		$this->elements = $elements;
+	}
 }
 
 /* EOF */

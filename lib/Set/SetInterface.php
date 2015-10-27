@@ -1,8 +1,8 @@
 <?php
 
-namespace Scribe\PrimitiveAugustus\Set;
+namespace Scribe\Primitive\Set;
 
-use Scribe\PrimitiveAugustus\Collection\CollectionInterface;
+use Scribe\Primitive\Collection\CollectionInterface;
 
 /**
  * Interface SetInterface.

@@ -11,8 +11,8 @@
          syntaxCheck="true"
          bootstrap="vendor/autoload.php">
     <testsuites>
-        <testsuite name="scribe/primitive-augustus-library">
-            <directory>./lib/Tests/</directory>
+        <testsuite name="Scribe Augustus Primitive Library">
+            <directory>./tests/</directory>
         </testsuite>
     </testsuites>
     <groups>
@@ -23,9 +23,6 @@
     <filter>
         <whitelist>
             <directory>./lib</directory>
-            <exclude>
-                <directory>./*/Tests/</directory>
-            </exclude>
         </whitelist>
     </filter>
     <logging>

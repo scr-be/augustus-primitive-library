@@ -1,8 +1,8 @@
 <?php
 
-namespace Scribe\PrimitiveAugustus\Map;
+namespace Scribe\Primitive\Map;
 
-use Scribe\PrimitiveAugustus\Collection\CollectionInterface;
+use Scribe\Primitive\Collection\CollectionInterface;
 
 /**
  * Interface MapInterface.

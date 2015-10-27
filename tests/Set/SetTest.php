@@ -1,9 +1,9 @@
 <?php
 
-namespace Scribe\PrimitiveAugustus\Tests\Set;
+namespace Scribe\Primitive\Tests\Set;
 
 use PHPUnit_Framework_TestCase;
-use Scribe\PrimitiveAugustus\Set\Set;
+use Scribe\Primitive\Set\Set;
 
 /**
  * Class SetTest.

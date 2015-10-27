@@ -1,9 +1,9 @@
 <?php
 
-namespace Scribe\PrimitiveAugustus\Tests\Map;
+namespace Scribe\Primitive\Tests\Map;
 
 use PHPUnit_Framework_TestCase;
-use Scribe\PrimitiveAugustus\Map\Map;
+use Scribe\Primitive\Map\Map;
 
 /**
  * Class MapTest.

@@ -1,10 +1,10 @@
 <?php
 
-namespace Scribe\PrimitiveAugustus\Set;
+namespace Scribe\Primitive\Set;
 
 use Closure;
-use Scribe\PrimitiveAugustus\Collection\AbstractCollection;
-use Scribe\PrimitiveAugustus\Collection\CollectionInterface;
+use Scribe\Primitive\Collection\AbstractCollection;
+use Scribe\Primitive\Collection\CollectionInterface;
 
 /**
  * Class Set.

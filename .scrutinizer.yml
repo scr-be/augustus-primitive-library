@@ -6,7 +6,7 @@ filter:
         - 'bin/'
         - 'build/'
         - 'docs/'
-        - 'lib/Tests/'
+        - 'tests/'
         - 'vendor/'
 
 tools:

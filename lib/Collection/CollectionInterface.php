@@ -1,6 +1,6 @@
 <?php
 
-namespace Scribe\PrimitiveAugustus\Collection;
+namespace Scribe\Primitive\Collection;
 
 use Closure;
 use Countable;

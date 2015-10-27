@@ -1,5 +1,5 @@
 {
-    "name"        : "scribe/primitive-augustus-library",
+    "name"        : "scr-be/primitive-augustus-library",
     "license"     : "MIT",
     "type"        : "library",
     "homepage"    : "https://scr.be/primitive-augustus-library/home",
@@ -32,15 +32,13 @@
         "nikic/php-parser"       : ">=1.0,<1.2"
     },
     "autoload" : {
-        "psr-4" : {
-            "Scribe\\PrimitiveAugustus\\" : "lib/"
-        }
+        "psr-4" : { "Scribe\\Primitive\\" : "lib/" }
     },
-    "config" : {
-        "bin-dir"           : "bin",
-        "preferred-install" : "auto",
-        "minimum-stability" : "dev"
+    "autoload-dev" : {
+        "psr-4" : { "Scribe\\Primitive\\Tests\\" : "tests/" }
     },
+    "prefer-stable"     : true,
+    "minimum-stability" : "dev",
     "extra" : {
         "branch-alias" : {
             "dev-master" : "0.1.x-dev"
