@@ -1,20 +1,18 @@
-# Augustus Primitive Library
+# Scribe: Augustus Primitive Library
 
-[![Travis](https://img.shields.io/travis/scr-be/augustus-primitive-library/master.svg?style=flat-square)](https://augustus-primitive-library.docs.scribe.tools/ci)
-[![Scrutinizer](https://img.shields.io/scrutinizer/g/scr-be/augustus-primitive-library/master.svg?style=flat-square)](https://augustus-primitive-library.docs.scribe.tools/quality)
-[![Coveralls](https://img.shields.io/coveralls/scr-be/augustus-primitive-library/master.svg?style=flat-square)](https://augustus-primitive-library.docs.scribe.tools/coverage)
-[![Gemnasium](https://img.shields.io/gemnasium/scr-be/augustus-primitive-library.svg?style=flat-square)](https://augustus-primitive-library.docs.scribe.tools/deps)
+[![Travis](https://scr.be/augustus-primitive-library/travis_shield)](https://scr.be/augustus-primitive-library/travis)
+[![Scrutinizer](https://scr.be/augustus-primitive-library/scrutinizer_shield)](https://scr.be/augustus-primitive-library/scrutinizer)
+[![Coveralls](https://scr.be/augustus-primitive-library/coveralls_shield)](https://scr.be/augustus-primitive-library/coveralls)
+[![Gemnasium](https://scr.be/augustus-primitive-library/gemnasium_shield)](https://scr.be/augustus-primitive-library/gemnasium)
 
-*scr-be/augustus-primitive-library* is an MIT licensed bundle used primarily by Scribe Inc for their own website and client sites. It
-includes the collection of packages required for our development needs.
+The `scr-be/augustus-primitive-library` provides simple and lightway implementations of various collection-types (to augment the lack of array-like primitives in PHP).
 
-## License, Usage, Documentation
+## License, Reference, and Release
 
-[![License](https://img.shields.io/badge/license-MIT-008ac6.svg?style=flat-square)](https://augustus-primitive-library.docs.scribe.tools/license)
-[![RTD](https://readthedocs.org/projects/augustus-primitive-library/badge/?version=latest&style=flat-square)](https://augustus-primitive-library.docs.scribe.tools/docs)
-[![API](https://img.shields.io/badge/docs-reference%20api-c75ec1.svg?style=flat-square)](https://augustus-primitive-library.docs.scribe.tools/api)
+[![License](https://scr.be/augustus-primitive-library/license_shield)](https://scr.be/augustus-primitive-library/license)
+[![README](https://scr.be/augustus-primitive-library/readme_shield)](https://scr.be/augustus-primitive-library/readme)
+[![API](https://scr.be/augustus-primitive-library/api_shield)](https://scr.be/augustus-primitive-library/api)
+[![Packagist](https://scr.be/augustus-primitive-library/packagist_shield)](https://scr.be/augustus-primitive-library/packagist)
 
-This project is licensed under the [MIT License](https://augustus-primitive-library.docs.scribe.tools/license).
-User documentation as well as API reference is available via the above buttons.
-
-**Visit our [Read the Docs page](https://augustus-primitive-library.docs.scribe.tools/docs) for additional documentation.**
+This project is licensed under the [MIT License](https://scr.be/augustus-primitive-library/license).
+API Reference docs and our latest release are available via the above badges.
