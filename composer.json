@@ -30,6 +30,9 @@
         "scrutinizer/ocular"          : "~1.1",
         "satooshi/php-coveralls"      : "~0.7"
     },
+    "suggest" : {
+        "hoa/math" : "~0.1"
+    },
     "autoload" : {
         "psr-4" : {
             "Scribe\\Primitive\\" : "lib/"
