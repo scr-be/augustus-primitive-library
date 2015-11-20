@@ -454,7 +454,7 @@ abstract class AbstractCollection implements CollectionInterface
      */
     public function mergeCollection(CollectionInterface $collection)
     {
-        $this->elements = array_merge($this->elements, $collection);
+        $this->elements = array_merge($this->elements, $collection->toArray());
 
         return $this;
     }

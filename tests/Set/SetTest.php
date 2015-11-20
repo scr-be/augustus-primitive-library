@@ -38,6 +38,46 @@ class SetTest extends PHPUnit_Framework_TestCase
         static::assertTrue($set->containsKey(0));
         static::assertTrue($set->containsKey(1));
     }
+
+    public function test_can_return_array()
+    {
+        $array = ['index1' => 'value1', 'index2' => 'value2'];
+        $set = new Set($array);
+
+        static::assertEquals(array_values($array), $set->toArray());
+    }
+
+    public function test_can_add()
+    {
+        $array = ['value1', 'value2'];
+        $set = new Set($array);
+        $set->add('value1');
+        $set->add('value3');
+
+        static::assertEquals(['value1', 'value2', 'value3'], $set->toArray());
+    }
+
+    public function test_can_merge_arrays()
+    {
+        $set1 = new Set(['index1' => 'value1', 'index2' => 'value2']);
+        $set2 = ['index4' => 'value1', 'index2' => 'value2'];
+        $set3 = ['abcdef', 'index2' => 'idk'];
+        $set1->merge($set2);
+        $set1->merge($set3);
+
+        static::assertEquals(['value1', 'value2', 'abcdef', 'idk'], $set1->toArray());
+    }
+
+    public function test_can_merge_collection()
+    {
+        $set1 = new Set(['index1' => 'value1', 'index2' => 'value2']);
+        $set2 = new Set(['index4' => 'value1', 'index2' => 'value2']);
+        $set3 = new Set(['abcdef', 'index2' => 'idk']);
+        $set1->mergeCollection($set2);
+        $set1->mergeCollection($set3);
+
+        static::assertEquals(['value1', 'value2', 'abcdef', 'idk'], $set1->toArray());
+    }
 }
 
 /* EOF */

@@ -175,6 +175,33 @@ class MapTest extends PHPUnit_Framework_TestCase
 
         static::assertEquals([0 => 'some-string', 'explicit-index' => 1000, 1 => 80], $mapSort->toArray());
     }
+
+    public function test_for_all()
+    {
+        $map = new Map(['one', 33 => 'two']);
+
+        $findTwo = function($k, $v) {
+            return (bool) ($v === 'two');
+        };
+
+        $findThree = function($k, $v) {
+            return (bool) ($v === 'three');
+        };
+
+        static::assertTrue($map->forAll($findTwo));
+        static::assertFalse($map->forAll($findThree));
+    }
+
+    public function test_map()
+    {
+        $map = new Map(['one', 33 => 'two']);
+
+        $closure = function($v) {
+            return $v.'More';
+        };
+
+        static::assertEquals(new Map(array_map($closure, ['one', 33 => 'two'])), $map->map($closure));
+    }
 }
 
 /* EOF */
