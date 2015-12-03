@@ -113,8 +113,6 @@ abstract class AbstractCollection implements CollectionInterface
 
     /**
      * @param mixed $offset
-     *
-     * @return null
      */
     public function offsetGet($offset)
     {
@@ -225,8 +223,6 @@ abstract class AbstractCollection implements CollectionInterface
 
     /**
      * @param mixed $key
-     *
-     * @return null
      */
     public function get($key)
     {
@@ -234,7 +230,7 @@ abstract class AbstractCollection implements CollectionInterface
             return $this->elements[$key];
         }
 
-        return null;
+        return;
     }
 
     /**
@@ -294,7 +290,9 @@ abstract class AbstractCollection implements CollectionInterface
     public function exists(Closure $predicate)
     {
         foreach ($this->elements as $key => $el) {
-            if ($predicate($key, $el)) { return true; }
+            if ($predicate($key, $el)) {
+                return true;
+            }
         }
 
         return false;
@@ -342,7 +340,9 @@ abstract class AbstractCollection implements CollectionInterface
     public function forAll(Closure $predicate)
     {
         foreach ($this->elements as $key => $el) {
-            if ($predicate($key, $el) === true) { return true; }
+            if ($predicate($key, $el) === true) {
+                return true;
+            }
         }
 
         return false;
@@ -400,10 +400,12 @@ abstract class AbstractCollection implements CollectionInterface
     public function find(Closure $predicate)
     {
         foreach ($this->elements as $el) {
-            if ($predicate($el) === true) { return $el; }
+            if ($predicate($el) === true) {
+                return $el;
+            }
         }
 
-        return null;
+        return;
     }
 
     /**
@@ -414,10 +416,12 @@ abstract class AbstractCollection implements CollectionInterface
     public function findKey(Closure $predicate)
     {
         foreach ($this->getKeys() as $key) {
-            if ($predicate($key) === true) { return $key; }
+            if ($predicate($key) === true) {
+                return $key;
+            }
         }
 
-        return null;
+        return;
     }
 
     /**
@@ -432,7 +436,7 @@ abstract class AbstractCollection implements CollectionInterface
             return $key;
         }
 
-        return null;
+        return;
     }
 
     /**
@@ -527,7 +531,7 @@ abstract class AbstractCollection implements CollectionInterface
      */
     public function symmetricDifference(CollectionInterface $collection)
     {
-        $intersect  = $this->intersect($collection);
+        $intersect = $this->intersect($collection);
         $difference = $this->union($collection);
 
         foreach ($intersect as $key => $el) {

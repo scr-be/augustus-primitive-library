@@ -145,11 +145,13 @@ class MapTest extends PHPUnit_Framework_TestCase
     {
         $map = new Map(['some-string', 'explicit-index' => 1000, 80]);
 
-        static::assertTrue($map->exists(function($i, $v) {
-            if ($v === 80) { return true; }
+        static::assertTrue($map->exists(function ($i, $v) {
+            if ($v === 80) {
+                return true;
+            }
         }));
 
-        static::assertFalse($map->exists(function($i, $v) {
+        static::assertFalse($map->exists(function ($i, $v) {
             return false;
         }));
 
@@ -159,8 +161,11 @@ class MapTest extends PHPUnit_Framework_TestCase
 
         $mapFiltered = clone $map;
 
-        $mapFiltered->filter(function($v) {
-            if (is_int($v)) { return false; }
+        $mapFiltered->filter(function ($v) {
+            if (is_int($v)) {
+                return false;
+            }
+
             return true;
         });
 
@@ -169,8 +174,12 @@ class MapTest extends PHPUnit_Framework_TestCase
 
         $mapSort = clone $map;
 
-        $mapSort->sort(function($i, $v) {
-            if (is_string($v)) { return true; } else { return false; }
+        $mapSort->sort(function ($i, $v) {
+            if (is_string($v)) {
+                return true;
+            } else {
+                return false;
+            }
         });
 
         static::assertEquals([0 => 'some-string', 'explicit-index' => 1000, 1 => 80], $mapSort->toArray());
@@ -180,11 +189,11 @@ class MapTest extends PHPUnit_Framework_TestCase
     {
         $map = new Map(['one', 33 => 'two']);
 
-        $findTwo = function($k, $v) {
+        $findTwo = function ($k, $v) {
             return (bool) ($v === 'two');
         };
 
-        $findThree = function($k, $v) {
+        $findThree = function ($k, $v) {
             return (bool) ($v === 'three');
         };
 
@@ -196,7 +205,7 @@ class MapTest extends PHPUnit_Framework_TestCase
     {
         $map = new Map(['one', 33 => 'two']);
 
-        $closure = function($v) {
+        $closure = function ($v) {
             return $v.'More';
         };
 

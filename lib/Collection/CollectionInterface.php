@@ -76,8 +76,6 @@ interface CollectionInterface extends Countable, IteratorAggregate, ArrayAccess
 
     /**
      * @param mixed $offset
-     *
-     * @return null
      */
     public function offsetGet($offset);
 
@@ -142,8 +140,6 @@ interface CollectionInterface extends Countable, IteratorAggregate, ArrayAccess
 
     /**
      * @param mixed $key
-     *
-     * @return null
      */
     public function get($key);
 
