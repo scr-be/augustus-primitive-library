@@ -1,7 +1,7 @@
 # Scribe: Augustus Primitive Library
 
 [![Travis](https://scr.be/augustus-primitive-library/travis_shield)](https://scr.be/augustus-primitive-library/travis)
-[![Scrutinizer](https://scr.be/augustus-primitive-library/scrutinizer_shield)](https://scr.be/augustus-primitive-library/scrutinizer)
+[![Codacy](https://scr.be/augustus-primitive-library/codacy_shield)](https://scr.be/augustus-primitive-library/codacy)
 [![Coveralls](https://scr.be/augustus-primitive-library/coveralls_shield)](https://scr.be/augustus-primitive-library/coveralls)
 [![Gemnasium](https://scr.be/augustus-primitive-library/gemnasium_shield)](https://scr.be/augustus-primitive-library/gemnasium)
 
