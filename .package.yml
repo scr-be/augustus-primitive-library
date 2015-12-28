@@ -11,3 +11,5 @@ php_exts : ~
 app_prep : dep-composer
 app_post : ~
 app_path : ~
+pkg_name : augustus-primitive-library
+pkg_desc : "light-weight collection type implementations for sets and maps."
