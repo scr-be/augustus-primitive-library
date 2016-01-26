@@ -11,7 +11,7 @@
         "irc"    : "irc://irc.efnet.org/scribe"
     },
     "keywords"    : [
-        "augustus-primitive-library", "scribe-augustus-primitive-library", "library", "scr.be", "scribe", "scribenet", "scribe-softwade", "scribe-services"
+        "augustus-primitive-library", "scribe"
     ],
     "authors" : [
         {
