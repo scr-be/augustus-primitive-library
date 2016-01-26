@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Scribe Augustus Primitive Library.
+ * This file is part of the Augustus Primitive Library
  *
- * (c) Scribe Inc. <oss@scr.be>
+ * (c) Rob Frawley 2nd <rmf@scr.be>
  *
  * For the full copyright and license information, please view the LICENSE.md
  * file that was distributed with this source code.

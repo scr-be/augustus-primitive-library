@@ -9,26 +9,26 @@
  * file that was distributed with this source code.
  */
 
-namespace Scribe\Primitive\Tests\Map;
+namespace Scribe\Primitive\Tests\Hash;
 
 use PHPUnit_Framework_TestCase;
-use Scribe\Primitive\Map\Map;
+use Scribe\Primitive\Hash\Hash;
 
 /**
- * Class MapTest.
+ * Class HashTest.
  */
-class MapTest extends PHPUnit_Framework_TestCase
+class HashTest extends PHPUnit_Framework_TestCase
 {
     public function test_can_be_constructed_with_no_param()
     {
-        $map = new Map();
+        $map = new Hash();
 
         static::assertCount(0, $map);
     }
 
     public function test_can_be_constructed_with_param()
     {
-        $map = new Map(['index1' => 'value1', 'index2' => 'value2']);
+        $map = new Hash(['index1' => 'value1', 'index2' => 'value2']);
 
         static::assertCount(2, $map);
         static::assertTrue($map->contains('value1'));
@@ -40,7 +40,7 @@ class MapTest extends PHPUnit_Framework_TestCase
     public function test_can_return_array()
     {
         $array = ['index1' => 'value1', 'index2' => 'value2'];
-        $map = new Map($array);
+        $map = new Hash($array);
 
         static::assertEquals($array, $map->toArray());
     }
@@ -48,7 +48,7 @@ class MapTest extends PHPUnit_Framework_TestCase
     public function test_support_iterator_and_array_access()
     {
         $array = ['index1' => 'value1', 'index2' => 'value2'];
-        $map = new Map($array);
+        $map = new Hash($array);
 
         foreach ($map as $index => $value) {
             static::assertArrayHasKey($index, $array);
@@ -93,7 +93,7 @@ class MapTest extends PHPUnit_Framework_TestCase
 
         $array = ['i1' => 'v1', 'i2' => 'v2', 'i3' => 'v3'];
 
-        $map = new Map($array);
+        $map = new Hash($array);
 
         static::assertEquals($array['i1'], $map->first());
         static::assertEquals(array_keys($array)[0], $map->key());
@@ -114,18 +114,18 @@ class MapTest extends PHPUnit_Framework_TestCase
         $a2 = ['i1' => 'v1', 'i3' => 'v3', 'i5' => 'v5', 'i5' => 'v5'];
         $r = ['i1' => 'v1', 'i2' => 'v2', 'i3' => 'v3', 'i5' => 'v5', 'i5' => 'v5'];
 
-        $map = new Map($a1);
+        $map = new Hash($a1);
 
         static::assertEquals($a1, $map->toArray());
 
-        $map->addAllCollection(new Map($a2));
+        $map->addAllCollection(new Hash($a2));
 
         static::assertEquals($r, $map->toArray());
     }
 
     public function test_get_unset_key()
     {
-        $map = new Map([1, 2, 3, 4]);
+        $map = new Hash([1, 2, 3, 4]);
 
         static::assertNull($map->get('some-unknown-key'));
     }
@@ -134,7 +134,7 @@ class MapTest extends PHPUnit_Framework_TestCase
     {
         $a = [10, 20, 9 => 30];
 
-        $map = new Map([10, 20, 9 => 30]);
+        $map = new Hash([10, 20, 9 => 30]);
 
         static::assertEquals($a, $map->toArray());
         $map->remove(30);
@@ -143,7 +143,7 @@ class MapTest extends PHPUnit_Framework_TestCase
 
     public function test_closure_predicates()
     {
-        $map = new Map(['some-string', 'explicit-index' => 1000, 80]);
+        $map = new Hash(['some-string', 'explicit-index' => 1000, 80]);
 
         static::assertTrue($map->exists(function ($i, $v) {
             if ($v === 80) {
@@ -187,7 +187,7 @@ class MapTest extends PHPUnit_Framework_TestCase
 
     public function test_for_all()
     {
-        $map = new Map(['one', 33 => 'two']);
+        $map = new Hash(['one', 33 => 'two']);
 
         $findTwo = function ($k, $v) {
             return (bool) ($v === 'two');
@@ -203,13 +203,13 @@ class MapTest extends PHPUnit_Framework_TestCase
 
     public function test_map()
     {
-        $map = new Map(['one', 33 => 'two']);
+        $map = new Hash(['one', 33 => 'two']);
 
         $closure = function ($v) {
             return $v.'More';
         };
 
-        static::assertEquals(new Map(array_map($closure, ['one', 33 => 'two'])), $map->map($closure));
+        static::assertEquals(new Hash(array_map($closure, ['one', 33 => 'two'])), $map->map($closure));
     }
 }
 
