@@ -230,7 +230,7 @@ abstract class AbstractCollection implements CollectionInterface
             return $this->elements[$key];
         }
 
-        return;
+        return null;
     }
 
     /**
@@ -405,7 +405,7 @@ abstract class AbstractCollection implements CollectionInterface
             }
         }
 
-        return;
+        return null;
     }
 
     /**
@@ -421,7 +421,7 @@ abstract class AbstractCollection implements CollectionInterface
             }
         }
 
-        return;
+        return null;
     }
 
     /**
@@ -436,7 +436,7 @@ abstract class AbstractCollection implements CollectionInterface
             return $key;
         }
 
-        return;
+        return null;
     }
 
     /**
