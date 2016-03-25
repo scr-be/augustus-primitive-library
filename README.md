@@ -22,11 +22,10 @@ and related functionality.
 
 This package represents a single project within a
 [large collection](https://get.src.run/go/explore) of open-source code released
-under the *Scribe* namespace, comprised of framework-agnostic libraries,
+under the *SR* namespace, comprised of framework-agnostic libraries,
 and a number of Symfony bundles. These projects are authored and maintained
 by [Rob Frawley 2nd](https://get.src.run/rmf) and 
-[collaborators](https://get.src.run/augustus-primitive-library/github_collaborators),
-often with the support of [Scribe Inc](https://get.src.run/go/scribe-home).
+[collaborators](https://get.src.run/augustus-primitive-library/github_collaborators).
 
 ## Quick Start
 
