@@ -1,9 +1,10 @@
 ---
 
 ##
-# This file is part of `scr-be/augustus-primitive-library`
+# This file is part of the `src-run/augustus-primitive-library` project.
 #
 # (c) Rob Frawley 2nd <rmf@src.run>
+# (c) Scribe Inc      <scr@src.run>
 #
 # For the full copyright and license information, view the LICENSE.md
 # file distributed with this source code.
@@ -44,7 +45,7 @@ services :
 # Add custom Hostname to build environment.
 addons :
   hosts :
-    - mainline.src.run
+    - travis.src.run
 
 # Define any required global enviornment variables. Specifically,
 # the package_builder variable must be set to true to enable the

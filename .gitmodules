@@ -1,4 +1,4 @@
 [submodule ".config"]
 	path = .config
-	url = https://github.com/scr-be/build-knowledge-shared.git
+	url = https://github.com/src-run/build-knowledge-shared.git
 	branch = master

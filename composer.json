@@ -1,13 +1,13 @@
 {
-    "name"        : "scr-be/augustus-primitive-library",
+    "name"        : "src-run/augustus-primitive-library",
     "license"     : "MIT",
     "type"        : "library",
-    "homepage"    : "https://scr.be/augustus-primitive-library/home",
+    "homepage"    : "https://get.src.run/augustus-primitive-library/home",
     "description" : "Implementations of various collection-types to augment the lack of array-like primitives in PHP.",
     "support" : {
-        "email"  : "rmf@scr.be",
-        "source" : "https://scr.be/augustus-primitive-library/git",
-        "issues" : "https://scr.be/augustus-primitive-library/issues",
+        "email"  : "rmf@src.run",
+        "source" : "https://get.src.run/augustus-primitive-library/git",
+        "issues" : "https://get.src.run/augustus-primitive-library/issues",
         "irc"    : "irc://irc.efnet.org/scribe"
     },
     "keywords"    : [
@@ -16,8 +16,8 @@
     "authors" : [
         {
             "name"     : "Rob Frawley 2nd",
-            "email"    : "rmf@scr.be",
-            "homepage" : "https://scr.be/rmf",
+            "email"    : "rmf@src.run",
+            "homepage" : "https://get.src.run/rmf",
             "role"     : "Project Lead"
         }
     ],
@@ -32,12 +32,12 @@
     },
     "autoload" : {
         "psr-4" : {
-            "Scribe\\Primitive\\" : "lib/"
+            "SR\\Primitive\\" : "lib/"
         }
     },
     "autoload-dev" : {
         "psr-4" : {
-            "Scribe\\Primitive\\Tests\\" : "tests/"
+            "SR\\Primitive\\Tests\\" : "tests/"
         }
     },
     "minimum-stability" : "dev",

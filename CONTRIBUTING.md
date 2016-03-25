@@ -8,7 +8,7 @@ Ensure the following requirements are met when contributing pull-requests to thi
   /*
    * This file is part of the [Name of Library/Bundle].
    *
-   * (c) Scribe Inc. <open@scr.be>
+   * (c) Scribe Inc. <scr@src.run>
    *
    * For the full copyright and license information, please view the LICENSE.md
    * file that was distributed with this source code.

@@ -11,7 +11,7 @@
          syntaxCheck="true"
          bootstrap="./vendor/autoload.php">
     <testsuites>
-        <testsuite name="scr-be/augustus-primitive-library">
+        <testsuite name="src-run/augustus-primitive-library">
             <directory>./tests/</directory>
         </testsuite>
     </testsuites>
