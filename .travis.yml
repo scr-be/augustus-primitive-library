@@ -21,16 +21,6 @@ sudo     : false
 php :
   - 5.6
   - 7.0
-  - hhvm-nightly
-
-# Define build matrix to allow both HHVM environments to fail,
-# as we are only testing it right now. Also, turn on fast-finish
-# so results are finalized quickly (prior to allowed-failures
-# finishing).
-matrix :
-  fast_finish    : true
-  allow_failures :
-    - php : hhvm-nightly
 
 # Set a sane clone depth for Git.
 git :
