@@ -1,53 +1,53 @@
 {
-    "name"        : "src-run/augustus-primitive-library",
-    "license"     : "MIT",
-    "type"        : "library",
-    "homepage"    : "https://get.src.run/augustus-primitive-library/home",
-    "description" : "Implementations of various collection-types to augment the lack of array-like primitives in PHP.",
-    "support" : {
-        "email"  : "rmf@src.run",
-        "source" : "https://get.src.run/augustus-primitive-library/git",
-        "issues" : "https://get.src.run/augustus-primitive-library/issues",
-        "irc"    : "irc://irc.efnet.org/scribe"
-    },
-    "keywords"    : [
-        "augustus-primitive-library", "scribe"
-    ],
-    "authors" : [
-        {
-            "name"     : "Rob Frawley 2nd",
-            "email"    : "rmf@src.run",
-            "homepage" : "https://get.src.run/rmf",
-            "role"     : "Project Lead"
-        }
-    ],
-    "require" : {
-        "php" : "^5.6|^7.0"
-    },
-    "require-dev" : {
-        "phpunit/phpunit"        : "~5.0",
-        "codacy/coverage"        : "~1.0",
-        "satooshi/php-coveralls" : "~1.0",
-        "symfony/config"         : "~2.8"
-    },
-    "autoload" : {
-        "psr-4" : {
-            "SR\\Primitive\\" : "lib/"
-        }
-    },
-    "autoload-dev" : {
-        "psr-4" : {
-            "SR\\Primitive\\Tests\\" : "tests/"
-        }
-    },
-    "minimum-stability" : "dev",
-    "prefer-stable"     : true,
-    "config": {
-        "bin-dir" : "bin"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master" : "0.6-dev"
-        }
+  "name"        : "src-run/augustus-primitive-library",
+  "license"     : "MIT",
+  "type"        : "library",
+  "homepage"    : "https://src.run/augustus-primitive-library/home",
+  "description" : "a collection of objects implementing primative types not natively offered by the language",
+  "support" : {
+    "email"  : "rmf@src.run",
+    "source" : "https://src.run/augustus-primitive-library/git",
+    "issues" : "https://src.run/augustus-primitive-library/issues"
+  },
+  "keywords" : [
+    "augustus-primitive-library", "augustus", "primitive", "library", "rmf", "src-run"
+  ],
+  "authors" : [
+    {
+      "name"     : "Rob Frawley 2nd",
+      "email"    : "rmf@src.run",
+      "homepage" : "https://src.run/rmf",
+      "role"     : "Project Lead"
     }
+  ],
+  "require" : {
+    "php" : "^5.6|^7.0"
+  },
+  "require-dev" : {
+    "phpunit/phpunit"        : "^5.0",
+    "codacy/coverage"        : "^1.0",
+    "satooshi/php-coveralls" : "^1.0",
+    "symfony/var-dumper"     : "^2.8|^3.0",
+    "fzaninotto/faker"       : "^1.5"
+  },
+  "autoload" : {
+    "psr-4" : {
+      "SR\\Primitive\\" : "lib/"
+    }
+  },
+  "autoload-dev" : {
+    "psr-4" : {
+      "SR\\Primitive\\Tests\\" : "tests/"
+    }
+  },
+  "minimum-stability" : "dev",
+  "prefer-stable"     : true,
+  "config": {
+    "bin-dir" : "bin"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master" : "0.6-dev"
+    }
+  }
 }
