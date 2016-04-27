@@ -33,7 +33,7 @@ class Collection implements CollectionInterface
     /**
      * @param array $elements
      *
-     * @return static
+     * @return CollectionInterface
      */
     public static function create(array $elements = [])
     {
@@ -151,20 +151,21 @@ class Collection implements CollectionInterface
      *
      * @return bool
      */
-    public function same(CollectionInterface ...$collections)
+    public function equitable(CollectionInterface ...$collections)
     {
         $_ = function ($a, $b) {
             return $a > $b;
         };
 
-        $masterAssertion = $this->sortKeys($_);
+        $valid = $this->sortByKeys($_);
 
-        $passedAssertion = array_filter($collections, function (CollectionInterface $v) use ($_, $masterAssertion) {
-            $assertion = $v->sortKeys($_);
-            return $assertion->toArray() === $masterAssertion->toArray();
+        $check = array_filter($collections, function (CollectionInterface $v) use ($_, $valid) {
+            $assertion = $v->sortByKeys($_);
+
+            return $assertion->toArray() === $valid->toArray();
         });
 
-        return count($collections) === count($passedAssertion);
+        return count($collections) === count($check);
     }
 
     /**
@@ -240,7 +241,7 @@ class Collection implements CollectionInterface
      *
      * @return int
      */
-    public function containsElementCount($search)
+    public function instancesOf($search)
     {
         $elements = $this->elements;
         $elements = array_filter($elements, function ($v) use ($search) {
@@ -298,7 +299,7 @@ class Collection implements CollectionInterface
      */
     public function map(\Closure $closure)
     {
-        return static::create(array_map($closure, $this->elements));
+        return self::create(array_map($closure, $this->elements));
     }
 
     /**
@@ -307,11 +308,11 @@ class Collection implements CollectionInterface
      *
      * @return CollectionInterface
      */
-    public function filter(\Closure $predicate, $flag = 0)
+    public function filter(\Closure $predicate, $flag = ARRAY_FILTER_USE_BOTH)
     {
         $elements = $this->elements;
 
-        return static::create(array_filter($elements, $predicate, $flag));
+        return self::create(array_filter($elements, $predicate, $flag));
     }
 
     /**
@@ -319,19 +320,9 @@ class Collection implements CollectionInterface
      *
      * @return CollectionInterface
      */
-    public function filterKeys(\Closure $predicate)
+    public function filterByKeys(\Closure $predicate)
     {
         return $this->filter($predicate, ARRAY_FILTER_USE_KEY);
-    }
-
-    /**
-     * @param \Closure $predicate
-     *
-     * @return CollectionInterface
-     */
-    public function filterBoth(\Closure $predicate)
-    {
-        return $this->filter($predicate, ARRAY_FILTER_USE_BOTH);
     }
 
     /**
@@ -367,7 +358,7 @@ class Collection implements CollectionInterface
             }
         }
 
-        return [static::create($a), static::create($b)];
+        return [self::create($a), self::create($b)];
     }
 
     /**
@@ -396,9 +387,9 @@ class Collection implements CollectionInterface
      */
     public function slice($offset, $length = null)
     {
-        $elements = $this->elements;
+        $set = $this->elements;
 
-        return static::create(array_splice($elements, $offset, $length));
+        return self::create(array_splice($set, $offset, $length));
     }
 
     /**
@@ -408,18 +399,18 @@ class Collection implements CollectionInterface
      */
     public function merge(CollectionInterface ...$collections)
     {
-        $mergedElements = [];
+        $merged = [];
         array_unshift($collections, $this);
 
         foreach ($collections as $c) {
             $array = $c->toArray();
 
-            array_walk($array, function ($v, $i) use (&$mergedElements) {
-                $mergedElements[$i] = $v;
+            array_walk($array, function ($v, $i) use (&$merged) {
+                $merged[$i] = $v;
             });
         }
 
-        return static::create($mergedElements);
+        return self::create($merged);
     }
 
     /**
@@ -427,7 +418,7 @@ class Collection implements CollectionInterface
      */
     public function reverse()
     {
-        return static::create(array_reverse($this->elements, true));
+        return self::create(array_reverse($this->elements, true));
     }
 
     /**
@@ -435,16 +426,16 @@ class Collection implements CollectionInterface
      */
     public function shuffle()
     {
-        $collection = [];
-        $randomKeys = array_keys($this->elements);
+        $elements = [];
+        $elementKeys = array_keys($this->elements);
 
-        shuffle($randomKeys);
+        shuffle($elementKeys);
 
-        foreach ($randomKeys as $key) {
-            $collection[$key] = $this->elements[$key];
+        foreach ($elementKeys as $key) {
+            $elements[$key] = $this->elements[$key];
         }
 
-        return static::create($collection);
+        return self::create($elements);
     }
 
     /**
@@ -455,9 +446,10 @@ class Collection implements CollectionInterface
     public function sort(\Closure $predicate)
     {
         $elements = $this->elements;
+
         uasort($elements, $predicate);
 
-        return static::create($elements);
+        return self::create($elements);
     }
 
     /**
@@ -465,12 +457,13 @@ class Collection implements CollectionInterface
      *
      * @return CollectionInterface
      */
-    public function sortKeys(\Closure $predicate)
+    public function sortByKeys(\Closure $predicate)
     {
         $elements = $this->elements;
+
         uksort($elements, $predicate);
 
-        return static::create($elements);
+        return self::create($elements);
     }
 }
 

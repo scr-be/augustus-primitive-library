@@ -12,13 +12,18 @@
 
 namespace SR\Primitive;
 
-use Doctrine\Common\Collections\Collection as BaseCollection;
-
 /**
  * Class CollectionInterface.
  */
 interface CollectionInterface extends \Countable, \IteratorAggregate, \ArrayAccess
 {
+    /**
+     * @param array $elements
+     *
+     * @return CollectionInterface
+     */
+    public static function create(array $elements = []);
+
     /**
      * @return array
      */
@@ -86,7 +91,7 @@ interface CollectionInterface extends \Countable, \IteratorAggregate, \ArrayAcce
      *
      * @return bool
      */
-    public function same(CollectionInterface ...$collections);
+    public function equitable(CollectionInterface ...$collections);
 
     /**
      * @param \Closure $predicate
@@ -129,7 +134,7 @@ interface CollectionInterface extends \Countable, \IteratorAggregate, \ArrayAcce
      *
      * @return int
      */
-    public function containsElementCount($search);
+    public function instancesOf($search);
 
     /**
      * @param mixed $key
@@ -176,14 +181,7 @@ interface CollectionInterface extends \Countable, \IteratorAggregate, \ArrayAcce
      *
      * @return CollectionInterface
      */
-    public function filterKeys(\Closure $predicate);
-
-    /**
-     * @param \Closure $predicate
-     *
-     * @return CollectionInterface
-     */
-    public function filterBoth(\Closure $predicate);
+    public function filterByKeys(\Closure $predicate);
 
     /**
      * @param \Closure $predicate
@@ -241,5 +239,5 @@ interface CollectionInterface extends \Countable, \IteratorAggregate, \ArrayAcce
      *
      * @return CollectionInterface
      */
-    public function sortKeys(\Closure $predicate);
+    public function sortByKeys(\Closure $predicate);
 }

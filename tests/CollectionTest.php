@@ -45,10 +45,10 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $array = [];
         $faker = $this->getFaker();
 
-        for ($i = 0; $i < $size; $i++) {
+        for ($i = 0; $i < $size; ++$i) {
             $reset = ($i === 0 ? true : false);
             $k = $faker->unique($reset)->uuid;
-            $v = $faker->unique($reset)->realText($faker->numberBetween($size*2, $size*3));
+            $v = $faker->unique($reset)->realText($faker->numberBetween($size * 2, $size * 3));
             $array[$k] = $v;
             $class->set($k, $v);
         }
@@ -87,7 +87,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
             $this->assertFalse($c->containsKey($k));
 
             $this->assertNull($c->get($k));
-            $this->assertCount(50-$i, $c);
+            $this->assertCount(50 - $i, $c);
 
             $c->set($k, $v);
             $this->assertTrue($c->contains($v));
@@ -146,7 +146,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $a = [];
         $c = $this->getCollection($a, 20);
         $_ = function ($a, $b) {
-            return (int)substr($a, -2) > (int)substr($b, -2);
+            return (int) substr($a, -2) > (int) substr($b, -2);
         };
 
         uasort($a, $_);
@@ -154,12 +154,12 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($a, $c->sort($_)->toArray());
     }
 
-    public function testContainsElementCount()
+    public function testInstancesOf()
     {
         $a = [];
         $c = $this->getCollection($a, 20);
         $_ = function ($a, $b) {
-            return (int)substr($a, -2) > (int)substr($b, -2);
+            return (int) substr($a, -2) > (int) substr($b, -2);
         };
         $c = $c->sort($_);
 
@@ -171,7 +171,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(40, $c);
 
         foreach ($a as $i => $v) {
-            $this->assertSame(2, $c->containsElementCount($v));
+            $this->assertSame(2, $c->instancesOf($v));
         }
     }
 
@@ -180,7 +180,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $a = [];
         $c = $this->getCollection($a, 20);
         $_ = function ($a, $b) {
-            return (int)substr($a, -2) > (int)substr($b, -2);
+            return (int) substr($a, -2) > (int) substr($b, -2);
         };
         $c = $c->sort($_);
 
@@ -192,7 +192,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(40, $c);
 
         foreach ($a as $i => $v) {
-            $this->assertSame(2, $c->containsElementCount($v));
+            $this->assertSame(2, $c->instancesOf($v));
         }
     }
 
@@ -207,14 +207,14 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
             $av = key($aa);
             array_shift($aa);
 
-            return ($v === $av && $k === $ak);
+            return $v === $av && $k === $ak;
         });
 
         $this->assertTrue($return);
         reset($a);
 
-        $_ = function ($v, $k)  use ($a) {
-            return ($v === key($a) && $k === current($a));
+        $_ = function ($v, $k) use ($a) {
+            return $v === key($a) && $k === current($a);
         };
 
         $this->assertFalse($c->forAll($_));
@@ -234,14 +234,16 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
             $this->assertTrue($c2->contains(implode('', array_reverse(str_split($v, 1)))));
         }
 
-        $cInt = $c2->filterKeys(function ($i) {
+        $cInt = $c2->filterByKeys(function ($i) {
             $i = (int) substr($i, 0, 1);
-            return (!empty($i) && is_int($i));
+
+            return !empty($i) && is_int($i);
         });
 
-        $cStr = $c2->filterKeys(function ($i) {
+        $cStr = $c2->filterByKeys(function ($i) {
             $i = (int) substr($i, 0, 1);
-            return (empty($i) || !is_int($i));
+
+            return empty($i) || !is_int($i);
         });
 
         $this->assertLessThan(40, $cInt->count());
@@ -267,8 +269,8 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         };
 
         $this->assertNotSame($c2->toArray(), $cc->toArray());
-        $c1 = $cc->sortKeys($_);
-        $c2 = $c2->sortKeys($_);
+        $c1 = $cc->sortByKeys($_);
+        $c2 = $c2->sortByKeys($_);
         $this->assertSame($c2->toArray(), $c1->toArray());
 
         $cc1 = $c1->shuffle();
@@ -289,24 +291,24 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         }
 
         $this->assertNotSame($cc1->toArray(), $cc2->toArray());
-        $this->assertTrue($cc1->same($cc2));
-        $this->assertTrue($cc2->same($cc1));
+        $this->assertTrue($cc1->equitable($cc2));
+        $this->assertTrue($cc2->equitable($cc1));
 
-        $cc1 = $cc1->sortKeys($_);
-        $cc2 = $cc2->sortKeys($_);
+        $cc1 = $cc1->sortByKeys($_);
+        $cc2 = $cc2->sortByKeys($_);
 
         $this->assertSame($cc1->toArray(), $cc2->toArray());
-        $this->assertTrue($cc1->same($cc2));
-        $this->assertTrue($cc2->same($cc1));
+        $this->assertTrue($cc1->equitable($cc2));
+        $this->assertTrue($cc2->equitable($cc1));
 
         $this->assertSame(40, $cc1->count());
         $this->assertSame(40, $cc2->count());
 
-        $cc1 = $cc1->filterBoth(function ($v, $i) {
+        $cc1 = $cc1->filter(function ($v, $i) {
             return 0 === preg_match('{[^a-zA-Z0-9\s.!,\']}', $v);
         });
 
-        $cc2 = $cc2->filterBoth(function ($v, $i) {
+        $cc2 = $cc2->filter(function ($v, $i) {
             return 0 !== preg_match('{[^a-zA-Z0-9\s.!,\']}', $v);
         });
 
@@ -321,17 +323,18 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
             $this->assertTrue($cc2->containsKey($i));
         }
 
-        $this->assertFalse($cc2->same($cc2p2));
-        $this->assertFalse($cc2->same($cc2p3));
+        $this->assertFalse($cc2->equitable($cc2p2));
+        $this->assertFalse($cc2->equitable($cc2p3));
 
         $cc2p = $cc2p1->merge($cc2p2, $cc2p3);
 
-        $this->assertTrue($cc2->same($cc2p));
+        $this->assertTrue($cc2->equitable($cc2p));
         $this->assertSame($cc2->toArray(), $cc2p->toArray());
 
         list($cc2p4, $cc2p5) = $cc2->partition(function ($v, $i) {
             static $i = 0;
             ++$i;
+
             return ($i % 2) === 0;
         });
 
@@ -340,13 +343,13 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
             $this->assertTrue($cc2->containsKey($i));
         }
 
-        $this->assertFalse($cc2->same($cc2p4));
-        $this->assertFalse($cc2->same($cc2p5));
+        $this->assertFalse($cc2->equitable($cc2p4));
+        $this->assertFalse($cc2->equitable($cc2p5));
 
         $cc2p = $cc2p4->merge($cc2p5);
 
-        $this->assertTrue($cc2->same($cc2p));
-        $this->assertSame($cc2->sortKeys($_)->toArray(), $cc2p->sortKeys($_)->toArray());
+        $this->assertTrue($cc2->equitable($cc2p));
+        $this->assertSame($cc2->sortByKeys($_)->toArray(), $cc2p->sortByKeys($_)->toArray());
     }
 
     public function testToString()
