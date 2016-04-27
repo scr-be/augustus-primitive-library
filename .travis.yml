@@ -10,53 +10,38 @@
 # file distributed with this source code.
 ##
 
-# Set the required project language environment and advise
-# Travis that this project fully supports the new, speedy,
-# container-built infrastructure.
-language : php
-sudo     : false
+language: php
 
-# Build against the following engines: Zend 5.6.x, 7.0.x, and
-# 7-nightly, and HHVM-stable and -nightly builds.
-php :
+sudo: false
+
+php:
   - 5.6
   - 7.0
 
-# Set a sane clone depth for Git.
-git :
-  depth : 3
+git:
+  depth: 3
 
-# List of services to enable. Globally we make sure Memcached and
-# MySQL is installed and running.
-services :
+services:
   - mysql
   - memcached
 
-# Add custom Hostname to build environment.
-addons :
-  hosts :
+addons:
+  hosts:
     - travis.src.run
 
-# Define any required global enviornment variables. Specifically,
-# the package_builder variable must be set to true to enable the
-# automated package builder scripts.
-env :
-  global :
+env:
+  global:
     - build_package=true
+    - secure: UfcKP9jjROtW1LsU3LvxL66l+whldaxSfy7UJCq/hjFHSnbsrIT2Z9/+E8kyPbxcExOe+AX5fmrLRuexsE49ono72HZExLPV1QeQEp3036SuHd6nZtfg+jF4EkZaKsGULgkS5LPChw0I2tA09CgwarmJ7lgV/rSarGlIRxlFBieFxk5HFEQ6QzGt5YjAo8w5qpAPFzIss7tD2dosRGNZJNCAjPgVaAEHM3wY73MupmH+aHT3W48otEqhkprtE4fn0OjRyVf14hHbk4zGHL19QE19t4iZwiE/GkGwovWQNxr5VAmFSBth3Tt89XLgqqtFhKOMCywoXU1or3BkLGyLUwkwdcBHyKpTaQN0yDBF1/i/MPwGWCMRvnUeRIRR7niIvKcMTMdzjPpB0fZ2wklDlwFuXYLA3QD7YMXkbzOQq2B+PA1O6x38MI2mDUlJ7OjWuHkVargSpC3app0LqSz7r+ZiQCdJkdqpFvJZKVjeHhv3oQOfmokNmqmlt5QUJSklW2B3jkKX7RCIj0hbFA16CzoUpwMqtSAI2jM5POzWkVrYOPVXH79u+XPyi38X51QehPqtefeIGPcY1V8re2Yea84DAMvgDbu8tZsfu0R2mYf6lv9lNt0mJzI7Frldx82NKYjVZ3UF9z+cYgK9aavo/zdwwbKXhNKgAlfQLztRJ8E=
 
-# Use builder to install system environment and application 
-# requirements.
-install :
-  - bash .config/builders/build-reqs/build-reqs.bash up-env
-  - bash .config/builders/build-reqs/build-reqs.bash up-app
+install:
+  - bash .run/builders/build-reqs/build-reqs.bash up-env
+  - bash .run/builders/build-reqs/build-reqs.bash up-app
 
-# Run unit tests!
-script : bin/phpunit -vvv
+script: bin/phpunit -vvv
 
-# Use builder to run post-operations, most importantly handle
-# statistics submissions for text coverage.
-after_script :
-  - bash .config/builders/build-reqs/build-reqs.bash dn-app
-  - bash .config/builders/build-reqs/build-reqs.bash dn-env
+after_script:
+  - bash .run/builders/build-reqs/build-reqs.bash dn-app
+  - bash .run/builders/build-reqs/build-reqs.bash dn-env
 
 ...
