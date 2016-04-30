@@ -23,7 +23,7 @@ class Collection implements CollectionInterface
     private $elements = [];
 
     /**
-     * @param array $elements
+     * @param mixed[] $elements
      */
     public function __construct(array $elements = [])
     {
@@ -31,7 +31,7 @@ class Collection implements CollectionInterface
     }
 
     /**
-     * @param array $elements
+     * @param mixed[] $elements
      *
      * @return CollectionInterface
      */
@@ -41,7 +41,7 @@ class Collection implements CollectionInterface
     }
 
     /**
-     * @return array
+     * @return mixed[]
      */
     public function toArray()
     {
@@ -94,7 +94,7 @@ class Collection implements CollectionInterface
     /**
      * @param mixed $offset
      *
-     * @return array|null
+     * @return null|mixed
      */
     public function offsetGet($offset)
     {
@@ -187,7 +187,7 @@ class Collection implements CollectionInterface
     /**
      * @param mixed $element
      *
-     * @return mixed|null
+     * @return null|mixed
      */
     public function indexOf($element)
     {
@@ -201,7 +201,7 @@ class Collection implements CollectionInterface
     /**
      * @param mixed $key
      *
-     * @return array|null
+     * @return null|mixed
      */
     public function get($key)
     {
@@ -213,7 +213,7 @@ class Collection implements CollectionInterface
     }
 
     /**
-     * @return array
+     * @return mixed[]
      */
     public function getKeys()
     {
@@ -221,7 +221,7 @@ class Collection implements CollectionInterface
     }
 
     /**
-     * @return array
+     * @return mixed[]
      */
     public function getValues()
     {

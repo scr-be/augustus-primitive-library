@@ -8,7 +8,7 @@
 
 [Welcome](https://src.run/go/readme_welcome)!
 The `src-run/augustus-primitive-library` package provides a
-a collection of objects implementing primative types not natively offered by the language.
+a collection of objects implementing primitive types not natively offered by the language.
 
 ### Grouping
 

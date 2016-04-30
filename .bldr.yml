@@ -12,5 +12,5 @@ app_prep   : dep-composer
 app_post   : ~
 app_path   : ~
 pkg_name   : augustus-primitive-library
-pkg_desc   : "a collection of objects implementing primative types not natively offered by the language"
+pkg_desc   : "a collection of objects implementing primitive types not natively offered by the language"
 pkg_bndl   : false

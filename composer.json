@@ -3,7 +3,7 @@
   "license"     : "MIT",
   "type"        : "library",
   "homepage"    : "https://src.run/augustus-primitive-library/home",
-  "description" : "a collection of objects implementing primative types not natively offered by the language",
+  "description" : "a collection of objects implementing primitive types not natively offered by the language",
   "support" : {
     "email"  : "rmf@src.run",
     "source" : "https://src.run/augustus-primitive-library/git",

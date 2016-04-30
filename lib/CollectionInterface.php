@@ -18,14 +18,14 @@ namespace SR\Primitive;
 interface CollectionInterface extends \Countable, \IteratorAggregate, \ArrayAccess
 {
     /**
-     * @param array $elements
+     * @param mixed[] $elements
      *
      * @return CollectionInterface
      */
     public static function create(array $elements = []);
 
     /**
-     * @return array
+     * @return mixed[]
      */
     public function toArray();
 
@@ -53,7 +53,7 @@ interface CollectionInterface extends \Countable, \IteratorAggregate, \ArrayAcce
     /**
      * @param mixed $offset
      *
-     * @return array|null
+     * @return null|mixed
      */
     public function offsetGet($offset);
 
@@ -103,24 +103,24 @@ interface CollectionInterface extends \Countable, \IteratorAggregate, \ArrayAcce
     /**
      * @param mixed $element
      *
-     * @return mixed|null
+     * @return null|mixed
      */
     public function indexOf($element);
 
     /**
      * @param mixed $key
      *
-     * @return array|null
+     * @return null|mixed
      */
     public function get($key);
 
     /**
-     * @return array
+     * @return mixed[]
      */
     public function getKeys();
 
     /**
-     * @return array
+     * @return mixed[]
      */
     public function getValues();
 
