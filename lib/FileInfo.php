@@ -41,6 +41,16 @@ class FileInfo extends SplFileInfo
     }
 
     /**
+     * @param \SplFileInfo $file
+     * 
+     * @return static
+     */
+    public static function createFromSplFileInfo(\SplFileInfo $file)
+    {
+        return new static($file->getPathname());
+    }
+
+    /**
      * @param int $precision
      *
      * @return string

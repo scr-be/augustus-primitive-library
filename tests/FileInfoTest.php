@@ -50,10 +50,18 @@ class FileInfoTest extends \PHPUnit_Framework_TestCase
     public function testSize()
     {
         $file = new FileInfo(__FILE__);
-        $size = $file->getSize();
         $sizeHuman = $file->getSizeHuman(2);
 
         $this->assertTrue(substr($sizeHuman, -1, 1) === 'K');
+    }
+
+    public function testCreateFromSpl()
+    {
+        $splFile = new \SplFileInfo('/foo/bar/file.ext');
+        $file = FileInfo::createFromSplFileInfo($splFile);
+
+        $this->assertInstanceOf('SR\Primitive\FileInfo', $file);
+        $this->assertSame('/foo/bar/file.ext', $file->getPathname());
     }
 }
 
