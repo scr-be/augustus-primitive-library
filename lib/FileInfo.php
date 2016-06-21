@@ -42,7 +42,7 @@ class FileInfo extends SplFileInfo
 
     /**
      * @param \SplFileInfo $file
-     * 
+     *
      * @return static
      */
     public static function createFromSplFileInfo(\SplFileInfo $file)
@@ -89,7 +89,7 @@ class FileInfo extends SplFileInfo
         /* Count how many parts the two paths have in common, since those parts
          * aren't included in the relative path.
          */
-        for ($i = 0; $i < max(sizeof($filePathParts), sizeof($relativeToParts)); ++$i) {
+        for ($i = 0; $i < max(count($filePathParts), count($relativeToParts)); ++$i) {
             if (!isset($filePathParts[$i]) || !isset($relativeToParts[$i])) {
                 break;
             }
@@ -103,14 +103,14 @@ class FileInfo extends SplFileInfo
 
         $relativeParts = [];
 
-        if (sizeof($relativeToParts) > $commonPartsCount) {
-            $replacementCount = sizeof($relativeToParts) - $commonPartsCount;
+        if (count($relativeToParts) > $commonPartsCount) {
+            $replacementCount = count($relativeToParts) - $commonPartsCount;
             $relativeParts = array_fill(0, $replacementCount, '..');
         }
 
-        if (sizeof($filePathParts) > $commonPartsCount) {
+        if (count($filePathParts) > $commonPartsCount) {
             $relativeToRemainingParts = array_slice($filePathParts, $commonPartsCount);
-            $relativeParts  = array_merge($relativeParts, $relativeToRemainingParts);
+            $relativeParts = array_merge($relativeParts, $relativeToRemainingParts);
         }
 
         return implode('/', $relativeParts);
