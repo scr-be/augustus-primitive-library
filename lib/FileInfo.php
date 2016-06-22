@@ -78,11 +78,17 @@ class FileInfo extends SplFileInfo
         }
 
         if (empty($relativeTo)) {
+            $relativeTo = '/';
+        }
+
+
+
+        if (empty($relativeTo)) {
             $relativeTo = DIRECTORY_SEPARATOR;
         }
 
         if (substr($filePath, 0, 1) !== '/' || substr($relativeTo, 0, 1) !== '/') {
-            throw InvalidArgumentException::create('File path and new relative path must be absolute pathnames.');
+            throw InvalidArgumentException::create(sprintf('File path (%s) and new relative path (%s) must be absolute pathnames.', $filePath, $relativeTo));
         }
 
         $filePathParts = explode(DIRECTORY_SEPARATOR, rtrim($filePath, DIRECTORY_SEPARATOR));
