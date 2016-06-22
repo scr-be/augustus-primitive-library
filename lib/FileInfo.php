@@ -76,13 +76,7 @@ class FileInfo extends SplFileInfo
         if ($relativeTo === null) {
             $relativeTo = getcwd();
         }
-
-        if (empty($relativeTo)) {
-            $relativeTo = '/';
-        }
-
-
-
+        
         if (empty($relativeTo)) {
             $relativeTo = DIRECTORY_SEPARATOR;
         }
