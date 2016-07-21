@@ -76,10 +76,6 @@ class FileInfo extends SplFileInfo
         if ($relativeTo === null) {
             $relativeTo = getcwd();
         }
-        
-        if (empty($relativeTo)) {
-            $relativeTo = DIRECTORY_SEPARATOR;
-        }
 
         if (substr($filePath, 0, 1) !== '/' || substr($relativeTo, 0, 1) !== '/') {
             throw InvalidArgumentException::create(sprintf('File path (%s) and new relative path (%s) must be absolute pathnames.', $filePath, $relativeTo));

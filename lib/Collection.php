@@ -15,13 +15,8 @@ namespace SR\Primitive;
 /**
  * Class Collection.
  */
-class Collection implements CollectionInterface
+class Collection extends SimpleCollection implements CollectionInterface
 {
-    /**
-     * @var mixed[]
-     */
-    private $elements = [];
-
     /**
      * @param mixed[] $elements
      */
@@ -41,28 +36,23 @@ class Collection implements CollectionInterface
     }
 
     /**
-     * @return mixed[]
+     * @param mixed $key
+     *
+     * @return bool
      */
-    public function toArray()
+    public function containsKey($key)
     {
-        return $this->elements;
+        return array_key_exists($key, $this->elements);
     }
 
     /**
-     * @param mixed $key
+     * @param mixed $element
      *
-     * @return mixed
+     * @return bool
      */
-    public function remove($key)
+    public function contains($element)
     {
-        if (!$this->containsKey($key)) {
-            return null;
-        }
-
-        $unset = $this->elements[$key];
-        unset($this->elements[$key]);
-
-        return $unset;
+        return in_array($element, $this->elements, true);
     }
 
     /**
@@ -127,26 +117,6 @@ class Collection implements CollectionInterface
     }
 
     /**
-     * @param mixed $key
-     *
-     * @return bool
-     */
-    public function containsKey($key)
-    {
-        return array_key_exists($key, $this->elements);
-    }
-
-    /**
-     * @param mixed $element
-     *
-     * @return bool
-     */
-    public function contains($element)
-    {
-        return in_array($element, $this->elements, true);
-    }
-
-    /**
      * @param CollectionInterface[] $collections
      *
      * @return bool
@@ -199,20 +169,6 @@ class Collection implements CollectionInterface
     }
 
     /**
-     * @param mixed $key
-     *
-     * @return null|mixed
-     */
-    public function get($key)
-    {
-        if ($this->containsKey($key)) {
-            return $this->elements[$key];
-        }
-
-        return null;
-    }
-
-    /**
      * @return mixed[]
      */
     public function getKeys()
@@ -226,14 +182,6 @@ class Collection implements CollectionInterface
     public function getValues()
     {
         return array_values($this->elements);
-    }
-
-    /**
-     * @return int
-     */
-    public function count()
-    {
-        return count($this->elements);
     }
 
     /**
@@ -252,19 +200,6 @@ class Collection implements CollectionInterface
     }
 
     /**
-     * @param mixed $key
-     * @param mixed $element
-     *
-     * @return $this
-     */
-    public function set($key, $element)
-    {
-        $this->elements[$key] = $element;
-
-        return $this;
-    }
-
-    /**
      * @param mixed $element
      *
      * @return $this
@@ -274,22 +209,6 @@ class Collection implements CollectionInterface
         $this->elements[] = $element;
 
         return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isEmpty()
-    {
-        return $this->count() === 0;
-    }
-
-    /**
-     * @return \ArrayIterator
-     */
-    public function getIterator()
-    {
-        return new \ArrayIterator($this->elements);
     }
 
     /**
@@ -367,16 +286,6 @@ class Collection implements CollectionInterface
     public function __toString()
     {
         return sprintf('%s@%s', __CLASS__, spl_object_hash($this));
-    }
-
-    /**
-     * @return $this
-     */
-    public function clear()
-    {
-        $this->elements = [];
-
-        return $this;
     }
 
     /**

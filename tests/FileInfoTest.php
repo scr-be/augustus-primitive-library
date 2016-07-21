@@ -33,10 +33,12 @@ class FileInfoTest extends \PHPUnit_Framework_TestCase
 
         $path = '/foo/bar/file.ext';
         $relativeTo = 'bar/foo/';
-        
+
         $this->expectException('SR\Exception\InvalidArgumentException');
 
         $this->assertSame('../../foo/bar/file.ext', FileInfo::absoluteToRelativePath($path, $relativeTo));
+
+        $this->assertSame('../../foo/bar/file.ext', FileInfo::absoluteToRelativePath($path));
     }
 
     public function testConstructor()

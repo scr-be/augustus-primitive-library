@@ -4,7 +4,6 @@
  * This file is part of the `src-run/augustus-primitive-library` project.
  *
  * (c) Rob Frawley 2nd <rmf@src.run>
- * (c) Scribe Inc      <scr@src.run>
  *
  * For the full copyright and license information, please view the LICENSE.md
  * file that was distributed with this source code.
@@ -15,7 +14,7 @@ namespace SR\Primitive;
 /**
  * Class CollectionInterface.
  */
-interface CollectionInterface extends \Countable, \IteratorAggregate, \ArrayAccess
+interface CollectionInterface extends SimpleCollectionInterface, \ArrayAccess
 {
     /**
      * @param mixed[] $elements
@@ -25,16 +24,18 @@ interface CollectionInterface extends \Countable, \IteratorAggregate, \ArrayAcce
     public static function create(array $elements = []);
 
     /**
-     * @return mixed[]
-     */
-    public function toArray();
-
-    /**
      * @param mixed $key
      *
-     * @return mixed
+     * @return bool
      */
-    public function remove($key);
+    public function containsKey($key);
+
+    /**
+     * @param mixed $element
+     *
+     * @return bool
+     */
+    public function contains($element);
 
     /**
      * @param mixed $element
@@ -73,20 +74,6 @@ interface CollectionInterface extends \Countable, \IteratorAggregate, \ArrayAcce
     public function offsetUnset($offset);
 
     /**
-     * @param mixed $key
-     *
-     * @return bool
-     */
-    public function containsKey($key);
-
-    /**
-     * @param mixed $element
-     *
-     * @return bool
-     */
-    public function contains($element);
-
-    /**
      * @param CollectionInterface[] $collections
      *
      * @return bool
@@ -108,13 +95,6 @@ interface CollectionInterface extends \Countable, \IteratorAggregate, \ArrayAcce
     public function indexOf($element);
 
     /**
-     * @param mixed $key
-     *
-     * @return null|mixed
-     */
-    public function get($key);
-
-    /**
      * @return mixed[]
      */
     public function getKeys();
@@ -125,11 +105,6 @@ interface CollectionInterface extends \Countable, \IteratorAggregate, \ArrayAcce
     public function getValues();
 
     /**
-     * @return int
-     */
-    public function count();
-
-    /**
      * @param mixed $search
      *
      * @return int
@@ -137,29 +112,11 @@ interface CollectionInterface extends \Countable, \IteratorAggregate, \ArrayAcce
     public function instancesOf($search);
 
     /**
-     * @param mixed $key
-     * @param mixed $element
-     *
-     * @return $this
-     */
-    public function set($key, $element);
-
-    /**
      * @param mixed $element
      *
      * @return $this
      */
     public function add($element);
-
-    /**
-     * @return bool
-     */
-    public function isEmpty();
-
-    /**
-     * @return \ArrayIterator
-     */
-    public function getIterator();
 
     /**
      * @param \Closure $closure
@@ -196,11 +153,6 @@ interface CollectionInterface extends \Countable, \IteratorAggregate, \ArrayAcce
      * @return CollectionInterface[]
      */
     public function partition(\Closure $predicate);
-
-    /**
-     * @return $this
-     */
-    public function clear();
 
     /**
      * @param int      $offset
@@ -241,3 +193,5 @@ interface CollectionInterface extends \Countable, \IteratorAggregate, \ArrayAcce
      */
     public function sortByKeys(\Closure $predicate);
 }
+
+/* EOF */
